@@ -1,7 +1,8 @@
 #Learning Functional Data Structures and Algorithms
 This is the code repository for [Learning Functional Data Structures and Algorithms](https://www.packtpub.com/application-development/learning-functional-data-structures-and-algorithms?utm_source=github&utm_medium=repository&utm_campaign=9781785888731), published by [Packt](https://www.packtpub.com/?utm_source=github). It contains all the supporting project files necessary to work through the book from start to finish.
 ## About the Book
-Go to Mapt
+This book is about functional algorithms and data structures. Algorithms and data structures are fundamentals of computer programming.
+
 ##Instructions and Navigation
 All of the code is organized into folders. Each folder starts with a number followed by the application name. For example, Chapter02.
 
@@ -19,7 +20,7 @@ You need to install Scala and Clojure. All the examples were tested with Scala v
 
 You also need a text editor. Use whichever you are comfortable with.
 
-##Related Products
+##Related Data Structur and Algorithms Products
 * [Learning F# Functional Data Structures and Algorithms](https://www.packtpub.com/application-development/learning-f-functional-data-structures-and-algorithms?utm_source=github&utm_medium=repository&utm_campaign=9781783558476)
 
 * [Clojure Data Structures and Algorithms Cookbook](https://www.packtpub.com/application-development/clojure-data-structures-and-algorithms-cookbook?utm_source=github&utm_medium=repository&utm_campaign=9781785281457)
