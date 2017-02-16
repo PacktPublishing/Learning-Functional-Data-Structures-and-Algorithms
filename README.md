@@ -20,7 +20,7 @@ You need to install Scala and Clojure. All the examples were tested with Scala v
 
 You also need a text editor. Use whichever you are comfortable with.
 
-##Related Data Structur and Algorithms Products
+##Related Data Structure and Algorithms Products
 * [Learning F# Functional Data Structures and Algorithms](https://www.packtpub.com/application-development/learning-f-functional-data-structures-and-algorithms?utm_source=github&utm_medium=repository&utm_campaign=9781783558476)
 
 * [Clojure Data Structures and Algorithms Cookbook](https://www.packtpub.com/application-development/clojure-data-structures-and-algorithms-cookbook?utm_source=github&utm_medium=repository&utm_campaign=9781785281457)
