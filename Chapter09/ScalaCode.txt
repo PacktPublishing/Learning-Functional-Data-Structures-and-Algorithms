@@ -1,0 +1,267 @@
+//Eager Evaluation
+var fv  = 5
+
+def leftBool(x : Int) : Boolean ={
+      	println("Left Function")
+     	x > 5
+      }
+
+def rightBool(x : Int) : Boolean = {
+     println(" Right Function")
+     x < 6
+  }
+
+val x = 3
+leftBool(x) && rightBool(x)
+val x = 6
+leftBool(x) && rightBool(x)
+
+// Lazy Evaluation 
+var sv = 5
+sv = 6
+val svc = 5
+svc = 6
+val sv = 5
+lazy val svl = 5
+lazy var svl = 5
+// Lazy Value date example 
+import  java.util.Calendar  //Line One
+lazy val lazyDate = Calendar.getInstance.getTime  //Line Two
+val simpleDate = Calendar.getInstance.getTime  // Line Three
+ val rl = 1 to 20 //Line Four 
+for(x <- rl) print(x) //Line Five 
+ println("Simple Date Variable Value Is : " + simpleDate) // Line Six
+ println("Lazy Date Variable Value Is : " + lazyDate) // Line Seven
+
+//// Memoization
+val ab = scala.collection.mutable.ArrayBuffer(1,2,3,4)  \\ Line one
+print(ab.remove(1))  // Line Two
+print(ab.remove(1)) // Line Three
+print(ab.remove(1)) // Line Four
+
+
+class Multiply {
+     	       def mult(num: Int) : Int = num*2
+     	 }
+
+val myMult = new Multiply()  \\Line One
+print(myMult.mult(4))  \\Line Two
+print(myMult.mult(4))  \\Line three
+
+//Memoization in Scala
+class SimpleFactorial{
+    def simpleFactFun(num : Int) : Int ={
+    	if(num == 0 || num == 1)
+    		1
+    	else{
+		println("Calculating Factorial")
+    		num*simpleFactFun(num-1)
+     	    }
+    }
+}
+
+val simpleFact = new SimpleFactorial()
+var factValue = simpleFact.simpleFactFun(5)
+
+var factValue = simpleFact.simpleFactFun(5)
+
+class MemoizedFactorial{
+    var memoized : Map[Int,Int] = Map()
+
+    def lookupFunction(id : Int) :Int = memoized.getOrElse(id,0)
+
+    def memoizedFactFun(num : Int) : Int ={
+    	if(num == 0 || num == 1)
+    		1
+     	else if (lookupFunction(num) > 0)
+     		lookupFunction(num)
+    	else{
+    		val fact = num*memoizedFactFun(num-1)
+		println("In memoizing part")
+    		memoized += num -> fact
+     		fact
+     	    }
+    }
+
+}
+
+
+var memFact =  new MemoizedFactorial()
+
+var factValue = memFact.memoizedFactFun(5)
+
+var factValue = memFact.memoizedFactFun(5)
+
+var factValue = memFact.memoizedFactFun(4)
+
+var factValue = memFact.memoizedFactFun(3)
+
+//Stream in Scala
+
+import scala.Stream
+var ms = Stream("a","b","c","d","e")
+
+print(ms)
+
+
+//Indexing the elements of Stream
+
+ms(0)
+
+ms(2)
+
+print(ms)
+
+//Creation of a infinite length Stream
+
+var msc = 1 #:: 2 #:: empty
+
+empty
+
+var ms  = cons(1, empty)
+
+
+def strFun(n : Int) : Stream[Int] = {               
+      	println("Evaluating next element of Stream")
+     	cons(n,strFun(n+1))
+     }
+
+var infStr = strFun(1)
+
+
+infStr(0)
+
+infStr(1)
+
+infStr(1)
+
+//Stream is Immutable
+
+infStr(1)
+
+infStr(1) = 10
+
+//Creation of a Stream from another
+
+var minfStr = infStr.map(x => x*x)
+
+minfStr(2)
+
+minfStr(2)
+
+def mapStr( x : Int) : Int = {
+      println("Mapping Values")
+      x*x
+   } 
+
+var infStr = strFun(1)
+
+
+
+var minfStr = infStr.map(x => mapStr(x))
+
+
+
+
+minfStr(2)
+
+
+
+minfStr(2)
+
+
+//Stream to List
+
+var ls = infStr.toList
+
+var strm = Stream(1,2,3,4,5)
+
+
+var ls  =  strm.toList
+
+
+
+//Apending one Stream to another
+
+var strm = Stream(1,2,3,4,5)
+
+
+var strm1 =  Stream(6,7,8)
+
+var astrm = strm.append(strm1)
+
+//Length of a Stream
+
+astrm.length
+
+//Some mathematical function of Stream class
+
+astrm.sum
+
+astrm.max
+
+astrm.min
+
+
+
+//Some more methods of Stream class
+
+var strm = Stream(1,2,3,4,5)
+strm.count(x => x%2==0)
+
+strm
+
+strm.find(x => x >3)
+
+//Arithmetic progression in Scala
+
+import Stream._
+
+def arithmeticProgression(ft : Double, cd: Double ) : Stream[Double] = {
+      		cons(ft, arithmeticProgression(ft+cd, cd ))
+           }
+
+
+val ap = arithmeticProgression(2,3)
+
+print(ap.take(5).toList)
+
+//Standard Brownian Motion in Scala
+
+import Stream._
+
+def brownianPathGenerator( x : Double) : Stream[Double] = {
+        val y = scala.util.Random.nextGaussian
+        cons(x, brownianPathGenerator(x+y))
+     }
+
+val brownianPath = brownianPathGenerator( 0 ).take(10)
+
+brownianPath.toList.foreach(println)
+
+//Fibonacci Series in Scala
+
+import Stream._
+
+def fiboSeries(x : BigInt, y : BigInt) : Stream[BigInt] = {
+     cons(x,fiboSeries(y,x+y))
+    }
+
+val fibSeriesWithZero = fiboSeries(0,1)
+
+fibSeriesWithZero.take(5).foreach(println)
+
+val fibSeriesWithOne = fiboSeries(1,1)
+
+fibSeriesWithOne.take(5).foreach(println)
+
+
+
+
+
+
+
+
+
+
+

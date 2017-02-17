@@ -1,0 +1,94 @@
+; Lazy Evaluation in Clojure
+(def lazyVal (delay 10))
+lazyVal
+(realized? lazyVal)
+(class lazyVal)
+(deref lazyVal)
+lazyVal
+(realized? lazyVal)
+(def lazyVal (delay 10))
+(force lazyVal)
+(def lazyVal (delay 10))
+@lazyVal
+(def fp (promise))
+(realized? fp)
+(deliver fp (str "MyString"))
+(realized? fp)
+fp
+(deref fp)
+(def lazyDate ( delay (new java.util.Date)))
+lazyDate 
+(def simpleDate  (new java.util.Date))
+simpleDate
+(count [1,2,3,4,5])
+simpleDate
+(deref lazyDate)
+
+
+;Memoization in Clojure
+(defn simpleFactFun [n]
+  (if (or (= n 1) (= n 0)) 1  
+ 	   ( do 
+		(println "Calculating Factorial")
+		 ( * n (simpleFactFun (dec n))))
+  )
+)
+
+(simpleFactFun 5)
+
+(def  memoizedFactFun (memoize simpleFactFun))
+
+ (memoizedFactFun 5)
+
+(memoizedFactFun 5)
+
+;Streams (lazy sequence) in Clojure
+
+(defn strFun [n]
+( lazy-seq  (println "Evaluating next element of Stream") (cons n (strFun (inc n)))))
+
+(take 3  (strFun 1))
+
+;Creating a memoized function of lazy sequences in Clojure
+
+(defn strFun [n]
+ ( lazy-seq  (println "Evaluating next element of Stream") (cons n (strFun (inc n)))))
+
+(def memzstrFun (memoize strFun))
+
+(take 3 (memzstrFun 1))
+
+(take 3 (memzstrFun 1))
+
+;Arithmetic progression in Clojure
+
+ (defn arithmeticProgression [ft cd]
+  ( lazy-seq  (cons ft (arithmeticProgression (+ ft cd) cd))))
+
+(println (take 10 (arithmeticProgression 2 3)))
+
+;Standard Brownian Motion in Clojure
+
+ (defn brownianPathGenerator [x] ;; Line One 
+  (def rndm (java.util.Random.)) ;; Line Two
+  (def y (.nextGaussian rndm)) ;; Line Three
+ (lazy-seq (cons x (brownianPathGenerator (+ x y))))) ;; Line Four 
+
+(take 10 (brownianPathGenerator 0))
+
+;;;;;;;Fibonacci Series in Clojure
+
+ (defn fiboSeries [x y]
+ (lazy-seq (cons x (fiboSeries y (+ x y)))))
+
+(take 5 (fiboSeries 0 1))
+
+(take 5 (fiboSeries 1 1))
+
+
+
+
+
+
+
+
